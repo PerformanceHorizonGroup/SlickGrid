@@ -1462,9 +1462,11 @@ if (typeof Slick === "undefined") {
       var m = columns[cell];
       var cssClass = m.cssClass;
 
-      var metadata = item.getItemMetadata && item.getItemMetadata(row);
-      if (metadata && metadata.columns && metadata.columns[cell]) {
-          cssClass = metadata.columns[cell].cssClass;
+      var metadata = data.getItemMetadata && data.getItemMetadata(row);
+      if (metadata && metadata.columns) {
+      	var columnData = metadata.columns[cell] || metadata.columns[m.id];
+      	if(columnData && columnData.cssClass)
+          cssClass = cssClass.cssClass;
       }
 
       var cellCss = "slick-cell l" + cell + " r" + Math.min(columns.length - 1, cell + colspan - 1) +
