@@ -1466,7 +1466,7 @@ if (typeof Slick === "undefined") {
       if (metadata && metadata.columns) {
       	var columnData = metadata.columns[cell] || metadata.columns[m.id];
       	if(columnData && columnData.cssClass)
-          cssClass = cssClass.cssClass;
+          cssClass = columnData.cssClass;
       }
 
       var cellCss = "slick-cell l" + cell + " r" + Math.min(columns.length - 1, cell + colspan - 1) +
