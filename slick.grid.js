@@ -923,7 +923,7 @@ if (typeof Slick === "undefined") {
     }
 
     function createCssRules() {
-      $style = $("<style type='text/css' rel='stylesheet' />").appendTo($("head"));
+      $style = $("<style type='text/css' rel='stylesheet' scoped />").prependTo($container) ; //.appendTo($("head"));
       var rowHeight = (options.rowHeight - cellHeightDiff);
       var rules = [
         "." + uid + " .slick-header-column { left: 1000px; }",
@@ -947,17 +947,19 @@ if (typeof Slick === "undefined") {
 
     function getColumnCssRules(idx) {
       if (!stylesheet) {
-        var sheets = document.styleSheets;
-        for (var i = 0; i < sheets.length; i++) {
-          if ((sheets[i].ownerNode || sheets[i].owningElement) == $style[0]) {
-            stylesheet = sheets[i];
-            break;
-          }
-        }
-
-        if (!stylesheet) {
-          throw new Error("Cannot find stylesheet.");
-        }
+//        var sheets = document.styleSheets;
+//        for (var i = 0; i < sheets.length; i++) {
+//          if ((sheets[i].ownerNode || sheets[i].owningElement) == $style[0]) {
+//            stylesheet = sheets[i];
+//            break;
+//          }
+//        }
+//
+//        if (!stylesheet) {
+//          throw new Error("Cannot find stylesheet.");
+//        }
+        
+        stylesheet=($style[0].sheet || $style[0].styleSheet);
 
         // find and cache column CSS rules
         columnCssRulesL = [];
